@@ -1,4 +1,3 @@
-(function privateCode() {
 // script for Home
 const home = document.getElementById('home');
 const start = document.getElementById('start');
@@ -406,4 +405,3 @@ const returnHome = document.getElementById('returnHome');
 returnHome.addEventListener('click', function () {
     location.reload(true)
 });
-})();
