@@ -406,4 +406,4 @@ const returnHome = document.getElementById('returnHome');
 returnHome.addEventListener('click', function () {
     location.reload(true)
 });
-});
+})();
