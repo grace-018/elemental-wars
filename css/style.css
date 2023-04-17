@@ -33,7 +33,7 @@ button:hover {
   height: 100%;
   display: grid;
   place-items: center;
-  background-image: url('./images/sunset.jpg');
+  background-image: url("../images/sunset.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -380,7 +380,7 @@ table {
   z-index: 1;
   overflow: auto;
   place-content: center;
-  background-image: url('/images/castle-throne-room.jpg');
+  background-image: url("../images/castle-throne-room.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
