@@ -1,3 +1,4 @@
+(function privateCode() {
 // script for Home
 const home = document.getElementById('home');
 const start = document.getElementById('start');
@@ -75,8 +76,7 @@ let playerElements = [
 //     // computerItems.appendChild(computerSpan);
 //     computerItems.appendChild(computerImg);
 // }
-console.log(computerElements);
-
+    
 // // show the player Elements in HTML
 
 const playerItems = document.getElementById('playerItems');
@@ -94,8 +94,6 @@ function showPlayerItems() {
         playerItems.appendChild(playerImg);
     }
 };
-
-console.log(playerElements);
 
 // Player select card
 
@@ -129,10 +127,8 @@ function handleClick(event) {
             alt: selectedAlt,
         };
 
-        console.log('player selected ' + playerSelect.alt);
     } else {
         playerSelect = null;
-        console.log('no selection');
     }
 };
 
@@ -190,30 +186,26 @@ function finalResult() {
         if (playerPoint === 6) {
             isGameOver = true;
             message.textContent = "Congratulations! You have won the game.";
-            console.log("Congratulations! You have won the game.");
         }
 
         if (computerPoint === 6) {
             isGameOver = true;
             message.textContent = "Sorry, you have lost the game.";
-            console.log("Sorry, you have lost the game.");
         }
 
         if (playerItems.hasChildNodes() && computerElements.length === 0) {
             if (playerPoint > computerPoint) {
                 isGameOver = true;
                 message.textContent = "Congratulations! You have won the game.";
-                console.log("Congratulations! You have won the game.");
             }
             if (playerPoint < computerPoint) {
                 isGameOver = true;
                 message.textContent = "Sorry, you have lost the game.";
-                console.log("Sorry, you have lost the game.");
             }
             if (playerPoint === computerPoint) {
                 isGameOver = true;
                 message.textContent = "It's a Draw";
-                console.log("It's a Draw");
+
             }
         };
         if (message.innerHTML !== "") {
@@ -221,10 +213,6 @@ function finalResult() {
             final.style.display = 'flex';
         };
     };
-    console.log('player point', playerPoint);
-    console.log(playerElements)
-    console.log('computer point', computerPoint);
-    console.log(computerElements)
 };
 
 // display result in HTML
@@ -238,10 +226,6 @@ const playerSelectedImg = document.createElement('img');
 playerSelectedImg.className = 'elements resultImg';
 
 const resultImg = document.querySelectorAll('.resultImg');
-
-console.log(computerSelected);
-console.log(playerSelected);
-
 
 //fight button script
 const fight = document.getElementById('fight')
@@ -259,7 +243,6 @@ function clickFight() {
             src: randomSelect.src,
             alt: randomSelect.alt,
         };
-        console.log('computer selected ' + computerSelect.alt);
 
         // Create a new img element with the updated src and alt attributes
         // this is for the selected card be displayed in the game field
@@ -313,17 +296,7 @@ function clickFight() {
 
     playerSelect = null;
     removeHiglight();
-    console.log('result')
-    console.log(result);
-    console.log(playerElements);
-    console.log('playerElements')
-    console.log(computerElements);
-    console.log('computerElements')
     setTimeout(finalResult,20000);
-    console.log('playerPoint');
-    console.log(playerPoint);
-    console.log('computerPoint');
-    console.log(computerPoint);
 };
 
 // restart button script
@@ -432,4 +405,5 @@ const returnHome = document.getElementById('returnHome');
 
 returnHome.addEventListener('click', function () {
     location.reload(true)
+});
 });
