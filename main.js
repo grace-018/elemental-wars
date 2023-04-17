@@ -35,30 +35,30 @@ closeModal.addEventListener('click', function () {
 
 // setting the element items for computer and player
 const elements = [
-    { src: '/images/wind.jpg', alt: 'wind', count: 0 },
-    { src: '/images/water.jpg', alt: 'water', count: 0 },
-    { src: '/images/fire.jpg', alt: 'fire', count: 0 },
-    { src: '/images/earth.jpg', alt: 'earth', count: 0 },
-    { src: '/images/light.jpg', alt: 'light', count: 0 },
-    { src: '/images/dark.jpg', alt: 'dark', count: 0 },
+    { src: 'images/wind.jpg', alt: 'wind', count: 0 },
+    { src: 'images/water.jpg', alt: 'water', count: 0 },
+    { src: 'images/fire.jpg', alt: 'fire', count: 0 },
+    { src: 'images/earth.jpg', alt: 'earth', count: 0 },
+    { src: 'images/light.jpg', alt: 'light', count: 0 },
+    { src: 'images/dark.jpg', alt: 'dark', count: 0 },
 ];
 
 let computerElements = [
-    { src: '/images/wind.jpg', alt: 'wind', count: 0 },
-    { src: '/images/water.jpg', alt: 'water', count: 0 },
-    { src: '/images/fire.jpg', alt: 'fire', count: 0 },
-    { src: '/images/earth.jpg', alt: 'earth', count: 0 },
-    { src: '/images/light.jpg', alt: 'light', count: 0 },
-    { src: '/images/dark.jpg', alt: 'dark', count: 0 },
+    { src: 'images/wind.jpg', alt: 'wind', count: 0 },
+    { src: 'images/water.jpg', alt: 'water', count: 0 },
+    { src: 'images/fire.jpg', alt: 'fire', count: 0 },
+    { src: 'images/earth.jpg', alt: 'earth', count: 0 },
+    { src: 'images/light.jpg', alt: 'light', count: 0 },
+    { src: 'images/dark.jpg', alt: 'dark', count: 0 },
 ];
 
 let playerElements = [
-    { src: '/images/wind.jpg', alt: 'wind', count: 0 },
-    { src: '/images/water.jpg', alt: 'water', count: 0 },
-    { src: '/images/fire.jpg', alt: 'fire', count: 0 },
-    { src: '/images/earth.jpg', alt: 'earth', count: 0 },
-    { src: '/images/light.jpg', alt: 'light', count: 0 },
-    { src: '/images/dark.jpg', alt: 'dark', count: 0 },
+    { src: 'images/wind.jpg', alt: 'wind', count: 0 },
+    { src: 'images/water.jpg', alt: 'water', count: 0 },
+    { src: 'images/fire.jpg', alt: 'fire', count: 0 },
+    { src: 'images/earth.jpg', alt: 'earth', count: 0 },
+    { src: 'images/light.jpg', alt: 'light', count: 0 },
+    { src: 'images/dark.jpg', alt: 'dark', count: 0 },
 ];
 
 // show the commputer items in HTML
