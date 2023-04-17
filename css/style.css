@@ -33,7 +33,7 @@ button:hover {
   height: 100%;
   display: grid;
   place-items: center;
-  background-image: url(/images/sunset.jpg);
+  background-image: url(images/sunset.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
