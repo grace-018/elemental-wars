@@ -380,6 +380,7 @@ table {
   z-index: 1;
   overflow: auto;
   place-content: center;
+  background-color: rgba(56, 55, 55, 0.8);
   background-image: url("../images/castle-throne-room.jpg");
   background-size: cover;
   background-position: center;
