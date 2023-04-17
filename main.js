@@ -319,7 +319,7 @@ function clickFight() {
     console.log('playerElements')
     console.log(computerElements);
     console.log('computerElements')
-    setTimeout(finalResult,30500);
+    setTimeout(finalResult,20000);
     console.log('playerPoint');
     console.log(playerPoint);
     console.log('computerPoint');
