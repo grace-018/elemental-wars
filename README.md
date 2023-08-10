@@ -15,6 +15,9 @@ All assets such as image are not owned by the project author. All rights and own
 Board and Card Designs
 -Tornioduva's basic card game asset pack - https://tornioduva.itch.io/tornioduva-card-pack
 
+-Background Image
+-Sunset in cartoon landscape - https://www.freepik.com/free-vector/sunset-cartoon-landscape_1076851.htm Image by 0melapics on Freepik
+
 Cards Images
 
 -Light Card Image - https://www.pngegg.com/en/png-dbccm
