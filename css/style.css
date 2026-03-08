@@ -6,7 +6,7 @@
 html,
 body {
   width: 100%;
-  height: 100%
+  height: 100%;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
   display: grid;
   place-items: center;
   font-size: clamp(1rem, 2vw, 1.5rem);
-
+  overflow: hidden;        /* prevent page-level scroll */
 }
 
 h2 {
@@ -31,8 +31,11 @@ button:hover {
 #home {
   width: 100%;
   height: 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   background-image: url("../images/sunset.jpg");
   background-size: cover;
   background-position: center;
@@ -40,7 +43,7 @@ button:hover {
 }
 
 h1 {
-  font-size: clamp(5rem, 4vw, 4.5rem);
+  font-size: clamp(2.5rem, 6vh, 4.5rem);
   /* background-color: rgba(44, 51, 51, .3); */
   text-align: center;
   font-family: 'Permanent Marker', cursive;
@@ -57,9 +60,46 @@ h1 {
   flex-direction: column;
 }
 
+#difficulty-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#difficulty-selector p {
+  color: #3d1f0a;
+  font-family: 'Play', sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(255, 220, 180, 0.6);
+}
+
+.diff-btn {
+  background-color: rgba(44, 51, 51, 0.6);
+  color: #e9c584;
+  border: 2px solid #e9c584;
+  border-radius: 8px;
+  padding: 4px 16px;
+  font-family: 'VT323', monospace;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.diff-btn.active {
+  background-color: #e9c584;
+  color: #2C3333;
+}
+
+.diff-btn:hover:not(.active) {
+  background-color: rgba(233, 197, 132, 0.25);
+}
+
 .home-button img {
-  width: clamp(10rem, 8vw, 8.5rem);
-  
+  width: clamp(6rem, 10vh, 8.5rem);
 }
 
 .button:hover {
@@ -75,14 +115,19 @@ h1 {
   width: 100%;
   height: 100%;
   display: none;
-  /*none*/
   flex-direction: column;
+  overflow: hidden;        /* no scrolling at container level */
 }
 
 header {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(233, 197, 132, 0.5);
+  padding: 2px 0;
+  flex-shrink: 0;
 }
 
 .game-button img {
@@ -91,21 +136,67 @@ header {
   margin: 5px 10px 0 0
 }
 
+#mute-btn {
+  background: none;
+  border: none;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  cursor: pointer;
+  padding: 4px 6px;
+  margin: 4px 4px 0 0;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  line-height: 1;
+}
+
+#mute-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
 
 #game-board {
   width: 90%;
-  height: 711.7px;
+  flex: 1;               /* fill remaining height in the flex container */
+  min-height: 0;         /* allow shrinking below content size */
   display: flex;
   flex-direction: column;
   align-self: center;
   background-color: #89504f;
-  margin: 0 0 10px 0;
+  margin: 0 0 6px 0;
   border: solid #e9c584 7px;
+  overflow: hidden;
 }
 
 .elements {
-  width: clamp(10rem, 7vw, 6rem);
-  margin: 4px;
+  width: clamp(3rem, 8vh, 5.5rem);  /* vh-based so cards shrink with screen height */
+  margin: 2px;
+}
+
+/* computer card backs */
+
+.card-back {
+  width: clamp(2rem, 5vh, 4rem);
+  height: clamp(2.8rem, 6.5vh, 5rem);
+  background-color: #2C3333;
+  border: 2px solid #e9c584;
+  border-radius: 6px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(233, 197, 132, 0.15) 0px,
+    rgba(233, 197, 132, 0.15) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.card-back::after {
+  content: '?';
+  color: rgba(233, 197, 132, 0.55);
+  font-family: 'VT323', monospace;
+  font-size: clamp(1rem, 2.5vh, 1.8rem);
 }
 
 /* computer side */
@@ -113,6 +204,10 @@ header {
 #computerfield {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.08);
+  border-bottom: 2px solid rgba(233, 197, 132, 0.35);
+  padding-bottom: 4px;
 }
 
 .computerScore {
@@ -132,24 +227,29 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
+  min-height: 0;
+  justify-content: center;
+  gap: 2px;
+  overflow: hidden;
 }
 
 
 #game-result {
   display: flex;
   flex-direction: row;
-  place-content: center;
   width: 100%;
-  height: 250px;
-  background-color: transparent;
-  border: 5px solid #e9c584;
-  justify-content: space-around;
+  height: clamp(100px, 22vh, 200px);
+  background-color: rgba(0, 0, 0, 0.12);
+  border: 3px solid rgba(233, 197, 132, 0.6);
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 
 .score {
-  font-size: clamp(2rem, 2vw, 2.5rem);
+  font-size: clamp(1rem, 2.5vh, 1.8rem);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -166,34 +266,88 @@ header {
 }
 
 .score-board .points {
-  font-size: clamp(3rem, 2vw, 2.5rem);
-
+  font-size: clamp(1.5rem, 3vh, 2.5rem);
 }
 
 .name {
   margin: 5px 10px
 }
 
+/* hint + counter on a single row */
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+#hint {
+  font-size: clamp(0.75rem, 1.5vh, 0.95rem);
+  color: #ff9a9a;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#hint.visible {
+  opacity: 1;
+}
+
+#battle-counter {
+  font-size: clamp(0.75rem, 1.5vh, 0.95rem);
+  color: #e9c584;
+  letter-spacing: 1px;
+  font-family: 'Play', sans-serif;
+}
+
 #fight {
-  padding: 5px;
-  margin: 0 10px;
+  padding: 2px;
+  margin: 0 6px;
+  flex-shrink: 0;
 }
 
 #fight img {
-  width: clamp(7rem, 8vw, 6.5rem);
+  width: clamp(3.5rem, 8vh, 5.5rem);
+}
+
+#fight.shake {
+  animation: shake 0.4s ease;
+}
+
+#battle-log {
+  list-style: none;
+  padding: 2px 8px;
+  font-size: clamp(0.65rem, 1.5vh, 0.85rem);
+  color: #f0e8d0;
+  min-width: 200px;
+  text-align: center;
+  margin-top: 2px;
+}
+
+#battle-log li {
+  border-bottom: 1px solid rgba(233, 197, 132, 0.2);
+  padding: 1px 0;
 }
 
 #result {
-  font-size: clamp(3rem, 2vw, 2.5rem);
+  font-size: clamp(1.3rem, 3vh, 2.2rem);
 }
 
 .resultImg {
-  margin: 20px;
+  margin: 6px;
   animation: zoom 3s ease-in-out 1;
   animation-fill-mode: forwards;
 }
 
-/* Animation keyframes as before */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
 @keyframes zoom {
   0% {
     transform: scale(.5);
@@ -210,15 +364,26 @@ header {
 
 /* player side */
 .direction {
-  align-self: center;
+  align-self: stretch;
   font-weight: bold;
-  font-size: clamp(2rem, 1vw, 1.5rem);
+  font-size: clamp(0.75rem, 1.5vh, 1rem);
+  flex-shrink: 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.18);
+  padding: 2px 0;
+  letter-spacing: 1px;
+  border-top: 1px solid rgba(233, 197, 132, 0.25);
+  border-bottom: 1px solid rgba(233, 197, 132, 0.25);
 }
 
 #playerfield {
   display: flex;
   flex-direction: column;
   position: relative;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.08);
+  border-top: 2px solid rgba(233, 197, 132, 0.35);
+  padding-top: 4px;
 }
 
 .playerScore {
@@ -230,10 +395,32 @@ header {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  height: 231.44px;
 }
 
-#playerItems .elements:hover {
+/* card slot wraps each player card + star indicators */
+.card-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.card-slot .elements {
+  margin: 0;
+}
+
+.stars {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  margin-top: 2px;
+  user-select: none;
+}
+
+.star.full  { color: #e9c584; }
+.star.empty { color: #444; }
+
+#playerItems .card-slot:hover .elements {
   transform: scale(1.4);
 }
 
@@ -339,7 +526,7 @@ li span {
 }
 
 .dark {
-  color: #15131f;
+  color: #9b59b6;
 }
 
 .all {
@@ -352,10 +539,6 @@ table {
 }
 
 #closeModal {
-  /* position: absolute;
-  right: 50px;
-  bottom: 50px; */
-  /* font-weight: bold; */
   font-size: clamp(1rem, 2vw, 2rem);
   width: 80px;
   font-family: 'Chewy', cursive;
@@ -398,6 +581,15 @@ table {
   color: #efd7ad;
   font-size: clamp(3.5rem, 3vw, 4rem);    
   overflow-wrap: anywhere;
+}
+
+#stats {
+  font-family: 'VT323', monospace;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  color: #efd7ad;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-top: 8px;
 }
 
 #returnHome {
@@ -447,19 +639,181 @@ table {
   width: 10%;
 }
 
-@media screen and (max-width: 1024px) {
-  #game-board {
-    height: max-content;
+/* ── UI & Game Rule Improvements ─────────────────────────────────────────── */
+
+/* Color-coded result text */
+#result.win-text  { color: #2ecc71; }
+#result.lose-text { color: #e74c3c; }
+#result.tie-text  { color: #f1c40f; }
+
+/* Battle explanation line */
+#battle-explanation {
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  color: #f0e8d0;
+  text-align: center;
+  min-height: 1.3em;
+  margin-top: 4px;
+  font-family: 'Play', sans-serif;
+}
+
+/* Pick areas and labels */
+.pick-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;         /* don't stretch — only as wide as their content */
+  padding: 0 clamp(6px, 2vw, 20px);
+}
+
+.pick-label {
+  font-size: clamp(0.65rem, 1.2vh, 0.85rem);
+  color: #e9c584;
+  font-family: 'VT323', monospace;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.result-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;               /* take the remaining middle space */
+  min-width: 0;
+}
+
+/* Show "VS" in center when no fight has happened yet */
+#result:empty::before {
+  content: 'VS';
+  opacity: 0.25;
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(1.5rem, 4vh, 3rem);
+  color: #e9c584;
+  display: block;
+  text-align: center;
+}
+
+/* Score pulse animation */
+@keyframes pulse {
+  0%,  100% { transform: scale(1); }
+  50%        { transform: scale(1.5); }
+}
+
+.score-board .points.pulse {
+  animation: pulse 0.4s ease;
+}
+
+/* Streak notification */
+#streak-notification {
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  color: #ffd700;
+  font-family: 'VT323', monospace;
+  letter-spacing: 1px;
+  text-align: center;
+  min-height: 1.5em;
+  opacity: 0;
+  transition: opacity 0.4s;
+  margin: 2px 0;
+}
+
+#streak-notification.visible {
+  opacity: 1;
+}
+
+/* Point target label in header */
+#point-target-label {
+  font-family: 'VT323', monospace;
+  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+  color: #e9c584;
+  letter-spacing: 1px;
+  margin-right: auto;
+  padding-left: 10px;
+}
+
+/* Mode selector on home screen */
+#mode-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#mode-selector p {
+  color: #3d1f0a;
+  font-family: 'Play', sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(255, 220, 180, 0.6);
+}
+
+.mode-btn {
+  background-color: rgba(44, 51, 51, 0.6);
+  color: #e9c584;
+  border: 2px solid #e9c584;
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-family: 'VT323', monospace;
+  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mode-btn.active {
+  background-color: #e9c584;
+  color: #2C3333;
+}
+
+.mode-btn:hover:not(.active) {
+  background-color: rgba(233, 197, 132, 0.25);
+}
+
+/* Desktop: loosen the home screen sizes since there's plenty of space */
+@media screen and (min-width: 1280px) {
+  h1 {
+    font-size: 5.5rem;
   }
 
-  #playerItems {
-    height: min-content;
+  .home-button img {
+    width: 11rem;
+  }
+
+  #difficulty-selector,
+  #mode-selector {
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  #difficulty-selector p,
+  #mode-selector p {
+    font-size: 1.15rem;
+  }
+
+  .diff-btn {
+    font-size: 1.3rem;
+    padding: 5px 22px;
+  }
+
+  .mode-btn {
+    font-size: 1.2rem;
+    padding: 5px 16px;
   }
 }
 
 @media screen and (max-width: 425px) {
   #game-result {
     flex-direction: column;
-    height: max-content;
+    height: clamp(140px, 32vh, 240px);
+  }
+
+  .elements {
+    width: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 5vh, 3rem);
   }
 }

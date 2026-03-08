@@ -18,23 +18,33 @@
   <div id="home">
     <h1>Elemental Wars</h1>
     <div class="home-button">
-      <span id="start">
-        <img src="images\start.png" class="button" alt="start-button" />
+      <span id="start" role="button" aria-label="Start game">
+        <img src="images/start.png" class="button" alt="Start game" />
       </span>
-      <span id="how-to-play">
-        <img src="images\how-to-play.png" class="button" alt="how-to-play-button" />
+      <span id="how-to-play" role="button" aria-label="How to play">
+        <img src="images/how-to-play.png" class="button" alt="How to play" />
       </span>
+    </div>
+    <div id="difficulty-selector">
+      <p>Difficulty:</p>
+      <button id="btn-easy" class="diff-btn active">Easy</button>
+      <button id="btn-hard" class="diff-btn">Hard</button>
+    </div>
+    <div id="mode-selector">
+      <p>Game Mode:</p>
+      <button id="btn-quick"    class="mode-btn">Quick (4)</button>
+      <button id="btn-classic"  class="mode-btn active">Classic (6)</button>
+      <button id="btn-marathon" class="mode-btn">Marathon (8)</button>
     </div>
   </div>
 
   <div id="game-container">
     <header class="game-button">
-      <span id="restart">
-        <img src="images\circular-arrow.png" class="button" alt="restart" />
+      <span id="point-target-label"></span>
+      <button id="mute-btn" aria-label="Toggle sound">🔊</button>
+      <span id="restart" role="button" aria-label="Restart game">
+        <img src="images/circular-arrow.png" class="button" alt="Restart game" />
       </span>
-      <!-- <span id="quit">
-        <img src="images\quit.jpg" class="button" alt="quit" />
-      </span> --commnent for now-->
     </header>
     <div id="game-board">
       <div id="computerfield">
@@ -50,13 +60,28 @@
 
       <div id="game-field">
         <div id="game-result">
-          <div class="playerSelected"></div>
-          <p id="result"></p>
-          <div class="computerSelected"></div>
+          <div class="pick-area">
+            <p class="pick-label">Your Pick</p>
+            <div class="playerSelected"></div>
+          </div>
+          <div class="result-center">
+            <p id="result"></p>
+            <p id="battle-explanation"></p>
+          </div>
+          <div class="pick-area">
+            <p class="pick-label">CPU Pick</p>
+            <div class="computerSelected"></div>
+          </div>
         </div>
-        <span id="fight">
-          <img src="images\fight.jpg" class="button fight-button" alt="quit" />
+        <div class="info-row">
+          <p id="hint"></p>
+          <p id="battle-counter"></p>
+        </div>
+        <div id="streak-notification"></div>
+        <span id="fight" role="button" aria-label="Fight">
+          <img src="images/fight.jpg" class="button fight-button" alt="Fight" />
         </span>
+        <ul id="battle-log"></ul>
       </div>
 
       <p class=direction> Choose your card</p>
@@ -81,61 +106,67 @@
       <div class="instruction-content">
         <ul>
           <li>
-            The objective of the game is to earn points by winning battles with the opponent.
+            The objective is to earn points by winning elemental battles against the computer.
           </li>
+
           <li>
-            Each player will receive a hand of six Elementtal cards, each can be used in the battle <span
-              class="twice">TWICE</span>
+            Before starting, choose your settings on the home screen:
+            <ul>
+              <li><strong>Difficulty</strong> — <span class="twice">Easy</span>: computer picks randomly.
+                <span class="twice">Hard</span>: computer counters your last played element.</li>
+              <li><strong>Game Mode</strong> — <span class="twice">Quick</span>: first to 4 pts.
+                <span class="twice">Classic</span>: first to 6 pts.
+                <span class="twice">Marathon</span>: first to 8 pts.</li>
+            </ul>
+          </li>
+
+          <li>
+            Each player receives a hand of six Elemental cards. Each card can be played <span
+              class="twice">TWICE</span> — two gold stars (★★) below each card show remaining uses.
+            One star dims (★☆) after the first use and the card disappears after the second.
           </li>
           <li>
             Elemental Cards are:
           </li>
           <div class="cards">
-            <img src="images\wind.jpg" />
-            <img src="images\water.jpg" />
-            <img src="images\fire.jpg" />
-            <img src="images\earth.jpg" />
-            <img src="images\light.jpg" />
-            <img src="images\dark.jpg" />
+            <img src="images/wind.jpg" alt="Wind element" />
+            <img src="images/water.jpg" alt="Water element" />
+            <img src="images/fire.jpg" alt="Fire element" />
+            <img src="images/earth.jpg" alt="Earth element" />
+            <img src="images/light.jpg" alt="Light element" />
+            <img src="images/dark.jpg" alt="Dark element" />
           </div>
 
           <li>
-            To start a battle, players will select one card from their hand to use.
+            Select a card from your hand, then click the <span class="fight">Fight</span> button to
+            battle the computer's hidden card.
           </li>
           <li>
-            Click the <span class="fight">Fight</span> button to initiate the battle.
-          </li>
-          <li>
-            A player earns a point if their selected element defeats the opponent's selected element based
-            on
-            the following rules:
+            A player earns 1 point when their element defeats the opponent's, based on these rules:
             <ul>
+              <li><span class="wind">Wind</span> defeats <span class="water">Water</span></li>
+              <li><span class="water">Water</span> defeats <span class="fire">Fire</span></li>
+              <li><span class="fire">Fire</span> defeats <span class="earth">Earth</span></li>
+              <li><span class="earth">Earth</span> defeats <span class="wind">Wind</span></li>
               <li>
-                <span class="wind">Wind</span> defeats <span class="water">Water</span>
-              </li>
-              <li>
-                <span class="water">Water</span> defeats <span class="fire">Fire</span>
-              </li>
-              <li>
-                <span class="fire">Fire</span> defeats <span class="earth">Earth</span>
-              </li>
-              <li>
-                <span class="earth">Earth</span> defeats <span class="wind">Wind</span>
-              </li>
-              <li>
-                <span class="light">Light</span> defeats <span class="dark">Dark</span>, but against any
-                other element, it results in a draw
+                <span class="light">Light</span> defeats <span class="dark">Dark</span>, but draws
+                against all other elements
               </li>
               <li>
                 <span class="dark">Dark</span> defeats <span class="all">all elements</span> except
-                Light
+                <span class="light">Light</span>
               </li>
             </ul>
           </li>
           <li>
-            The game ends when all six cards have been played, and the player with the most points at the
-            end
-            wins the game.
+            <strong>Win Streak Bonus</strong> — win 3 battles in a row to earn <span
+              class="twice">+1 Bonus Point</span>! The streak resets on a loss or tie.
+            The computer can earn a streak bonus too, so watch out!
+          </li>
+          <li>
+            The game ends when a player reaches the point target, or when all 12 battles
+            (6 cards × 2 uses) are played — whichever comes first. If all cards are exhausted,
+            the player with the most points wins.
           </li>
         </ul>
       </div>
@@ -147,6 +178,7 @@
 
   <div id="final">
     <h2 class=message></h2>
+    <p id="stats"></p>
     <br>
     <button id="returnHome">Return Home</button>
   </div>
